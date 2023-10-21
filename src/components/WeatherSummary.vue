@@ -21,12 +21,10 @@ const today = new Date().toLocaleString('en-EN', {
     <div
       :style="`background-image: url('../../public/weather-main/${weatherInfo?.weather[0].description}.png')`"
       class="pic-main"
-    ></div>
-    <div class="weather">
-      <div class="temp">{{ Math.round(weatherInfo?.main?.temp) }} °C</div>
-      <div class="weather-desc text-block">
-        {{ capitalizeFirstLetter(weatherInfo?.weather[0].description) }}
-      </div>
+    />
+    <div class="temp">{{ Math.round(weatherInfo?.main?.temp) }} °C</div>
+    <div class="weather-desc text-block">
+      {{ capitalizeFirstLetter(weatherInfo?.weather[0].description) }}
     </div>
     <div class="city text-block">{{ weatherInfo?.name }}, {{ weatherInfo?.sys?.country }}</div>
     <div class="date text-block">{{ today }}</div>
@@ -37,9 +35,9 @@ const today = new Date().toLocaleString('en-EN', {
 @import "../assets/styles/main"
 
 .pic-main
-  width: 60px
-  height: 60px
-  margin: 20px 0 12px
+  width: 90px
+  height: 90px
+  margin: 20px auto 0
   background-repeat: no-repeat
   background-position: 50% 50%
   background-size: contain
@@ -47,14 +45,11 @@ const today = new Date().toLocaleString('en-EN', {
 .city
   font-size: 24px
 
-.weather
-  margin: 0 0 20px
-  padding: 20px 0
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4)
-
 .temp
+  margin: 10px 0
+  text-align: center
   padding-bottom: 8px
-  font-size: 32px
+  font-size: 48px
 
 .text-block
   position: relative
@@ -75,6 +70,8 @@ const today = new Date().toLocaleString('en-EN', {
     background-size: contain
 
 .weather-desc
+  margin: 20px 0 20px
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4)
 
   &::before
     background-image: url('../assets/img/weather.svg')

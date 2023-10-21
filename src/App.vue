@@ -28,8 +28,14 @@ onMounted(getWeather)
           <div class="sections">
             <section :class="['section', 'section-left', { 'section-error': isError }]">
               <div class="info">
-                <div class="city-inner">
-                  <input v-model="city" type="text" class="search" @keyup.enter="getWeather" />
+                <div class="city-inner search">
+                  <input
+                    v-model="city"
+                    type="text"
+                    class="search-input"
+                    @keyup.enter="getWeather"
+                  />
+                  <button class="search-button" @click="getWeather" />
                 </div>
                 <WeatherSummary v-if="!isError" :weatherInfo="weatherInfo" />
                 <div v-else class="error">
@@ -102,20 +108,10 @@ onMounted(getWeather)
 
 .city-inner
   position: relative
-  display: inline-block
+  display: flex
+  justify-content: space-between
+  align-items: center
   width: 100%
-
-  &::after
-    content: ''
-    position: absolute
-    top: 0
-    right: 10px
-    width: 25px
-    height: 25px
-    background: url('./assets/img/search.svg') no-repeat 50% 50%
-    background-size: contain
-    transform: translateY(50%)
-    cursor: pointer
 
 .info
   height: 100%
@@ -125,15 +121,29 @@ onMounted(getWeather)
   border-radius: 25px
 
 .search
-  width: 100%
   padding: 16px
-  font-family: 'Inter', Arial, sans-serif
-  color: $white
   background-color: rgba(0, 0, 0, 0.75)
   border-radius: 16px
+  cursor: pointer
+
+.search-input
+  width: 100%
+  font-family: 'Inter', Arial, sans-serif
+  color: $white
+  background-color: transparent
   border: none
   outline: none
   cursor: pointer
+
+
+.search-button
+  width: 25px
+  height: 25px
+  border: none
+  background: url('./assets/img/search.svg') no-repeat 50% 50%
+  background-size: contain
+  cursor: pointer
+
 
 .section-bottom
   width: 50%
